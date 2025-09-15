@@ -19,7 +19,6 @@ public class RewardsServiceImpl implements RewardsService {
     @Autowired
     private PurchaseRepository purchaseRepository;
 
-    // Method to calculate reward points for a purchase amount
     private int calculatePoints(double amount) {
         int points = 0;
         if (amount > 100) {

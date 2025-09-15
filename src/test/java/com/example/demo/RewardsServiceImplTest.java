@@ -38,7 +38,7 @@ class RewardsServiceImplTest {
         LocalDate start = LocalDate.now().minusMonths(3);
         LocalDate end = LocalDate.now();
 
-        // Purchases → 120 (90 pts), 75 (25 pts), 40 (0 pts) → Total = 115
+
         List<Purchase> purchases = Arrays.asList(
                 new Purchase(1L, customerId, 120.0, LocalDate.now().minusDays(10)),
                 new Purchase(2L, customerId, 75.0, LocalDate.now().minusDays(20)),

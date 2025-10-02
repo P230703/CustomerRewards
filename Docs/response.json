@@ -1,0 +1,22 @@
+{
+  "customerId": 1,
+  "totalPoints": 115,
+  "pointsPerMonth": {
+    "2025-01": 90,
+    "2025-02": 25
+  },
+  "purchases": [
+    {
+      "id": 1,
+      "customerId": 1,
+      "amount": 120.0,
+      "date": "2025-01-15"
+    },
+    {
+      "id": 2,
+      "customerId": 1,
+      "amount": 75.0,
+      "date": "2025-01-20"
+    }
+  ]
+}

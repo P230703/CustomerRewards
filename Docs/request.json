@@ -1,0 +1,5 @@
+{
+  "method": "GET",
+  "url": "/api/rewards/1?start=2025-01-01T00:00:00Z&end=2025-03-31T23:59:59Z",
+  "description": "Fetch reward points for customerId=1 between 1st Jan 2025 and 31st Mar 2025. If start and end are not provided, the default period is the last 3 months."
+}

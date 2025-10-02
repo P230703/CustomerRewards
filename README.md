@@ -19,24 +19,14 @@ Tech Stack :
 
 API Endpoints:
 
-1.Create Purchase
-POST '/api/purchases'
--Request
-{
-  "customerId": 1,
-  "amount": 120.50,
-  "date": "2025-01-10"
-}
--Response
-{
-  "id": 1,
-  "customerId": 1,
-  "amount": 120.5,
-  "date": "2025-01-10"
-}
+-GET /api/rewards/{customerId}?start=YYYY-MM-DD&end=YYYY-MM-DD
+-Path Variable: customerId → customer ID
+-Query Params (optional):
+start → Start date in UTC (default: 3 months ago)
+end → End date in UTC (default: today)
 
-2.Get Rewards
-GET '/api/rewards/{customerId}?start=2025-01-01&end=2025-03-31'
+example:
+
 {
   "customerId": 1,
   "totalPoints": 115,
@@ -44,7 +34,29 @@ GET '/api/rewards/{customerId}?start=2025-01-01&end=2025-03-31'
     "2025-01": 90,
     "2025-02": 25
   },
-  "purchases": [...]
+  "purchases": [
+    {
+      "id": 1,
+      "customerId": 1,
+      "amount": 120.5,
+      "date": "2025-01-10"
+    },
+    {
+      "id": 2,
+      "customerId": 1,
+      "amount": 75.0,
+      "date": "2025-02-05"
+    }
+  ]
 }
 
+Test Evidence:
+-Build success screenshot: docs/BuildSuccess.png
+
+Run Application
+-Clone repo and set MySQL credentials in application.properties
+-Run:
+mvn clean install
+mvn spring-boot:run
+-Hit the /api/rewards/{customerId} endpoint using Postman.
 

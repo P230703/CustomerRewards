@@ -1,11 +1,9 @@
-package com.example.DTO;
+package com.charter.DTO;
 
-import com.example.entity.Purchase;
+import com.charter.Entity.Purchase;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.List;
 import java.util.Map;
 

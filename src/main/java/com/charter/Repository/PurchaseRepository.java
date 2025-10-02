@@ -1,6 +1,6 @@
-package com.example.Repository;
+package com.charter.Repository;
 
-import com.example.entity.Purchase;
+import com.charter.Entity.Purchase;
 import org.springframework.data.repository.CrudRepository;
 
 import java.time.LocalDate;

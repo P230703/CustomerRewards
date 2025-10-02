@@ -1,6 +1,5 @@
-package com.example.Exception;
+package com.charter.Exception;
 
-import com.example.Exception.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,8 +12,8 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(exception.class)
-    public ResponseEntity<Map<String, Object>> handleResourceNotFound(exception ex) {
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, Object>> handleResourceNotFound(Exception ex) {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("status", HttpStatus.NOT_FOUND.value());
@@ -23,8 +22,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, Object>> handleGenericException(Exception ex) {
+    @ExceptionHandler(java.lang.Exception.class)
+    public ResponseEntity<Map<String, Object>> handleGenericException(java.lang.Exception ex) {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());

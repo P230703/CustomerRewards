@@ -1,10 +1,10 @@
-package com.example.demo;
+package com.charter.test;
 
-import com.example.DTO.PurchaseResponseDTO;
-import com.example.Repository.PurchaseRepository;
-import com.example.Service.RewardsServiceImpl;
-import com.example.entity.Purchase;
-import com.example.Exception.exception;
+import com.charter.DTO.PurchaseResponseDTO;
+import com.charter.Repository.PurchaseRepository;
+import com.charter.Service.RewardsServiceImpl;
+import com.charter.Entity.Purchase;
+import com.charter.Exception.Exception;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -62,7 +62,7 @@ class RewardsServiceImplTest {
         when(purchaseRepository.findByCustomerIdAndDateBetween(customerId, start, end))
                 .thenReturn(Collections.emptyList());
 
-        exception thrown = assertThrows(exception.class,
+        Exception thrown = assertThrows(Exception.class,
                 () -> rewardsService.getRewards(customerId, start, end));
 
         assertEquals("No purchases found for customer id: " + customerId, thrown.getMessage());

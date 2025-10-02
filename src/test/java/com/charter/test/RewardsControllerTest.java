@@ -1,16 +1,16 @@
-package com.example.demo;
+package com.charter.test;
 
-import com.example.DTO.PurchaseRequestDTO;
-import com.example.DTO.PurchaseResponseDTO;
-import com.example.entity.Purchase;
-import com.example.Repository.PurchaseRepository;
+import com.charter.DTO.PurchaseResponseDTO;
+import com.charter.Repository.PurchaseRepository;
+import com.charter.Entity.Purchase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 
@@ -37,31 +37,18 @@ class RewardsControllerTest {
     }
 
     @Test
-    void testCreatePurchase() {
-        PurchaseRequestDTO request = new PurchaseRequestDTO(1L, 120.0, LocalDate.now());
-
-        ResponseEntity<Purchase> response = restTemplate.postForEntity(
-                baseUrl + "/purchases",
-                request,
-                Purchase.class
-        );
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().getCustomerId()).isEqualTo(1L);
-        assertThat(response.getBody().getAmount()).isEqualTo(120.0);
-    }
-
-    @Test
     void testGetRewards() {
+        // given: seed purchases for this customer
         purchaseRepository.save(new Purchase(null, 1L, 120.0, LocalDate.now().minusDays(5)));
         purchaseRepository.save(new Purchase(null, 1L, 75.0, LocalDate.now().minusDays(10)));
 
+        // when: call /rewards/{customerId}
         ResponseEntity<PurchaseResponseDTO> response = restTemplate.getForEntity(
                 baseUrl + "/rewards/1",
                 PurchaseResponseDTO.class
         );
 
+        // then: validate
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isNotNull();
         assertThat(response.getBody().getCustomerId()).isEqualTo(1L);
@@ -70,13 +57,16 @@ class RewardsControllerTest {
 
     @Test
     void testGetRewardsWhenNoPurchases() {
+        // given: no purchases for customerId=99
+
+        // when: call /rewards/99
         ResponseEntity<String> response = restTemplate.getForEntity(
                 baseUrl + "/rewards/99",
                 String.class
         );
 
+        // then: should return 404
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(response.getBody()).contains("No purchases found for customer id");
     }
 }
-

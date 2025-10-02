@@ -1,6 +1,6 @@
-package com.example.Service;
+package com.charter.Service;
 
-import com.example.DTO.PurchaseResponseDTO;
+import com.charter.DTO.PurchaseResponseDTO;
 
 import java.time.LocalDate;
 

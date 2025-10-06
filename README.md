@@ -53,10 +53,23 @@ example:
 Test Evidence:
 -Build success screenshot: docs/BuildSuccess.png
 
-Run Application
--Clone repo and set MySQL credentials in application.properties
--Run:
-mvn clean install
-mvn spring-boot:run
--Hit the /api/rewards/{customerId} endpoint using Postman.
+Set up and Build Instructions
+1. Clone the Repository
+   git clone https://github.com/P230703/CustomerRewards.git
+   cd CustomerRewards
+2. Configure the Database
+   Update your src/main/resources/application.properties file with your MySQL credentials:
+   spring.datasource.url=jdbc:mysql://localhost:3306/rewardsdb
+   spring.datasource.username=root
+   spring.datasource.password=yourpassword
+   spring.jpa.hibernate.ddl-auto=update
+3. Build the Application
+   Run the following commands from the project root:
+   mvn clean install
+   If the build is successful, you’ll see "BUILD SUCCESS" in the terminal.
 
+Run Application
+To start the Spring Boot application, use:
+mvn spring-boot:run
+The app will start at:
+http://localhost:8080

@@ -16,7 +16,8 @@
 	<artifactId>CustomerRewards</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>CustomerRewards</name>
-	<description>Rewards Program for Spring Boot</description>
+	<description>A Spring Boot-based rewards calculation system that computes customer points from purchase amounts, aggregates them monthly, and provides REST APIs to fetch detailed reward summaries.
+	</description>
 
 	<properties>
 		<java.version>17</java.version>

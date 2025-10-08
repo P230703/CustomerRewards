@@ -12,8 +12,8 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, Object>> handleResourceNotFound(Exception ex) {
+    @ExceptionHandler(CustomerRewardsException.class)
+    public ResponseEntity<Map<String, Object>> handleResourceNotFound(CustomerRewardsException ex) {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("status", HttpStatus.NOT_FOUND.value());

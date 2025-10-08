@@ -2,7 +2,7 @@ package com.charter.Service;
 import com.charter.DTO.PurchaseResponseDTO;
 import com.charter.Repository.PurchaseRepository;
 import com.charter.Entity.Purchase;
-import com.charter.Exception.Exception;
+import com.charter.Exception.CustomerRewardsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +39,7 @@ public class RewardsServiceImpl implements RewardsService {
         List<Purchase> purchases = purchaseRepository.findByCustomerIdAndDateBetween(customerId, start, end);
 
         if (purchases.isEmpty()) {
-            throw new Exception("No purchases found for customer id: " + customerId);
+            throw new CustomerRewardsException("No purchases found for customer id: " + customerId);
         }
 
         Map<String, Integer> monthlyPoints = new HashMap<>();
